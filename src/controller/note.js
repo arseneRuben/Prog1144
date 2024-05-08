@@ -20,7 +20,7 @@ export const createNote = async (req, res) => {
         connect()
         query('INSERT INTO notes (title, contents) VALUES (?, ?)', [req.body.title, req.body.contents ], function () {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
-            res.end(JSON.stringify({ message: 'Fodler created', success: true }, null, 4))
+            res.end(JSON.stringify({ message: 'Note created', success: true }, null, 4))
             disconnect()
         })
     } catch (error) {
