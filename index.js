@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import noteRoutes from './src/routes/note.js'
+import codeurRoutes from './src/routes/codeur.js'
+
 
 
 dotenv.config();
@@ -17,11 +19,13 @@ const corsOptions = {
 
 //middleware
 app.use(cors(corsOptions));
+
 app.use(express.json());
+
 
 // api routes
  app.use("/notes", noteRoutes);
-
+ app.use("/codeurs", codeurRoutes);
 app.listen(port, () => {
   console.log(`server running on port ${port}`);
 });
