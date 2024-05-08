@@ -42,13 +42,13 @@ export const getNote = async (req, res) => {
     }
 }   
 
-export const updateProgram = async (req, res) => {
+export const updateNote = async (req, res) => {
     try {
         connect()
-        query('UPDATE programs SET name=?, description=?,  type=? WHERE id=?',
-            [req.body.name, req.body.description, req.body.type, req.params.id], function () {
+        query('UPDATE notes SET title=?, contents=? WHERE id=?',
+            [req.body.title, req.body.contents, req.params.id], function () {
                 res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
-                res.end(JSON.stringify({ message: 'Program updated', success: true }, null, 4))
+                res.end(JSON.stringify({ message: 'Note updated', success: true }, null, 4))
                 disconnect()
             })
       
