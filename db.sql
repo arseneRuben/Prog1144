@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS `codeurs` (
   `experience` ENUM ('JUNIOR', 'INTERMEDIAIRE', 'SEINIOR'),
   PRIMARY KEY (`id`)
 );
-ALTER TABLE notes ADD column idCodeur int DEFAULT(1), 
-				ADD FOREIGN KEY fk_notes_codeurs(idCodeur) REFERENCES codeurs.id;
+ALTER TABLE notes ADD column idCodeur int DEFAULT(1);
+ALTER TABLE notes ADD FOREIGN KEY fk_notes_codeurs(idCodeur) REFERENCES codeurs(id);
 
 
-select * from codeurs;
+select * from notes where idCodeur=1;

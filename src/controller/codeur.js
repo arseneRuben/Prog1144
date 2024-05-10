@@ -19,9 +19,8 @@ export const createCodeur = async (req, res) => {
 
 export const getNotes = async (req, res) => {
     try {
-        console.log("GO")
         connect()
-        query('SELECT * FROM notes WHERE idCodeur=?', [req.param.id], (resp) => {
+        query("SELECT * FROM notes WHERE idCodeur = ?", [req.params.id], (resp) => {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
             res.end(JSON.stringify(resp, null, 4))
         })
