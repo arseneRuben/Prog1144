@@ -15,3 +15,30 @@ export const createCodeur = async (req, res) => {
         res.status(404).json({ message: error.message })
     }
 }
+
+
+export const getNotes = async (req, res) => {
+    try {
+        console.log("GO")
+        connect()
+        query('SELECT * FROM notes WHERE idCodeur=?', [req.param.id], (resp) => {
+            res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
+            res.end(JSON.stringify(resp, null, 4))
+        })
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
