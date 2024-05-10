@@ -18,7 +18,7 @@ export const getNotes = async (req, res) => {
 export const createNote = async (req, res) => {
     try {
         connect()
-        query('INSERT INTO notes (title, contents) VALUES (?, ?)', [req.body.title, req.body.contents ], function () {
+        query('INSERT INTO notes (title, contents, idCodeur) VALUES (?, ?)', [req.body.title, req.body.contents, req.body.idCodeur  ], function () {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
             res.end(JSON.stringify({ message: 'Note created', success: true }, null, 4))
             disconnect()
@@ -45,8 +45,8 @@ export const getNote = async (req, res) => {
 export const updateNote = async (req, res) => {
     try {
         connect()
-        query('UPDATE notes SET title=?, contents=? WHERE id=?',
-            [req.body.title, req.body.contents, req.params.id], function () {
+        query('UPDATE notes SET title=?, contents=?, idCodeur=? WHERE id=?',
+            [req.body.title, req.body.contents, req.body.idCodeur, req.params.id], function () {
                 res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
                 res.end(JSON.stringify({ message: 'Note updated', success: true }, null, 4))
                 disconnect()
@@ -71,6 +71,19 @@ export const deleteNote = async (req, res) => {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
             res.end(JSON.stringify({ message: 'Note deleted', success: true }, null, 4))
             disconnect()
+        })
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
+
+
+export const getCodeur = async (req, res) => {
+    try {
+        connect()
+        query("SELECT c.id, c.firstName, c.lastName FROM codeurs c INNER JOIN notes ON c.id = notes.idCodeur WHERE notes.id = ?", [req.params.id], (resp) => {
+            res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
+            res.end(JSON.stringify(resp, null, 4))
         })
     } catch (error) {
         res.status(404).json({ message: error.message })
