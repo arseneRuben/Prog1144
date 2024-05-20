@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `codeurs` (
   PRIMARY KEY (`id`)
 );
 ALTER TABLE notes ADD column idCodeur int DEFAULT(1);
-ALTER TABLE notes ADD FOREIGN KEY fk_notes_codeurs(idCodeur) REFERENCES codeurs(id);
+ALTER TABLE notes ADD FOREIGN KEY fk_notes_codeurs(idCodeur) REFERENCES codeurs(id) ON DELETE CASCADE;
 
 
-select * from notes where idCodeur=1;
+select * from notes ;

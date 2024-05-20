@@ -1,7 +1,7 @@
 {
   "name": "webapi",
   "version": "1.0.0",
-  "description": "api concu pour le cours prog1344",
+  "description": "api concu pour le cours prog1344/groupe1",
   "main": "index.js",
   "type": "module",
   "scripts": {
