@@ -8,7 +8,6 @@ CREATE TABLE IF NOT EXISTS `notes` (
   `created` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 );
-
 CREATE TABLE IF NOT EXISTS `codeurs` (
     `id` integer   auto_increment,
   `firstname` varchar(255) NOT NULL,
@@ -16,5 +15,8 @@ CREATE TABLE IF NOT EXISTS `codeurs` (
   `experience` ENUM ('JUNIOR', 'INTERMEDIAIRE', 'SEINIOR'),
   PRIMARY KEY (`id`)
 );
+ALTER TABLE notes ADD column idCodeur int DEFAULT(1);
+ALTER TABLE notes ADD FOREIGN KEY fk_notes_codeurs(idCodeur) REFERENCES codeurs(id);
 
 
+select * from notes where idCodeur=1;
