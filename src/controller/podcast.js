@@ -6,10 +6,10 @@ import { CONTENT_TYPE_JSON, HTTP_OK } from '../dao/util.js';
 export const createPodcast = async (req, res) => {
     try {
         connect();
-        query('INSERT INTO podcast (title, description, contents, idCodeur) VALUES (?, ?, ?, ?)', 
-            [req.body.title, req.body.description, req.body.contents, req.body.idCodeur], function () {
+        query('INSERT INTO podcast (title, description, contents) VALUES (?, ?, ?, )', 
+            [req.body.title, req.body.description, req.body.contents], function () {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON });
-            res.end(JSON.stringify({ message: 'Podcast created', success: true }, null, 4));
+            res.end(JSON.stringify({ message: 'Podcast created', success: true }, null, 3));
             disconnect();
         });
     } catch (error) {
