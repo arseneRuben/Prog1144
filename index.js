@@ -24,6 +24,15 @@ app.use("/notes", noteRoutes);
 app.use("/codeurs", codeurRoutes);
 app.use("/podcast", podcastRoutes);
 
+<<<<<<< HEAD
+=======
+// api routes
+ app.use("/notes", noteRoutes);
+ app.use("/codeurs", codeurRoutes);
+ app.use("/podcast", podcastRoutes);
+ app.use("/podcasts", podcastRoutes);
+
+>>>>>>> c73393ec9817afeaafdf1262f6ed89772beff0af
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

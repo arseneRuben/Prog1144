@@ -22,7 +22,7 @@ export const createPodcast = async (req, res) => {
 export const getPodcasts = async (req, res) => {
     try {
         connect();
-        query('SELECT * FROM podcast', [], (resp) => {
+        query('SELECT * FROM podcasts', [], (resp) => {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON });
             res.end(JSON.stringify(resp, null, 4));
             disconnect();
@@ -77,3 +77,5 @@ export const deletePodcast = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 };
+
+
