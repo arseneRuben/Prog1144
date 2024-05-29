@@ -1,4 +1,3 @@
-#Podcast database
 CREATE DATABASE IF NOT EXISTS podcast;
 use podcast;
 
