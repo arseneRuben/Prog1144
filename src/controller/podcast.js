@@ -37,7 +37,7 @@ export const getPodcasts = async (req, res) => {
 export const getPodcast = async (req, res) => {
     try {
         connect();
-        query('SELECT * FROM podcast WHERE id=?', [req.params.id], (resp) => {
+        query('SELECT * FROM podcasts WHERE id=?', [req.params.id], (resp) => {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON });
             res.end(JSON.stringify(resp, null, 4));
             disconnect();
