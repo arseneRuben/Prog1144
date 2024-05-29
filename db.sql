@@ -9,6 +9,11 @@ CREATE TABLE IF NOT EXISTS podcasts (
 	created_at timestamp default current_timestamp
 );
 
+ALTER TABLE podcasts
+ADD COLUMN filename varchar(255),
+ADD COLUMN langue varchar(255),
+ADD COLUMN id_program INT,
+ADD COLUMN id_presentation INT;
 
-
-
+ALTER TABLE podcasts
+DROP COLUMN contents;
