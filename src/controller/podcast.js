@@ -52,7 +52,7 @@ export const getPodcast = async (req, res) => {
 export const updatePodcast = async (req, res) => {
     try {
         connect();
-        query('UPDATE podcast SET title=?, description=?, contents=?, idCodeur=? WHERE id=?',
+        query('UPDATE podcasts SET title=?, description=?, contents=?, idCodeur=? WHERE id=?',
             [req.body.title, req.body.description, req.body.contents, req.body.idCodeur, req.params.id], function () {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON });
             res.end(JSON.stringify({ message: 'Podcast updated', success: true }, null, 4));
