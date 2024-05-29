@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS podcasts (
   `title` varchar(255) not null,
   `description` text,
   `contents` text,
-  `created_at` timestamp default current_timestamp
+	created_at timestamp default current_timestamp
 );
 
 
