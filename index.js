@@ -17,15 +17,13 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
 app.use(express.json());
 
 // API routes
 app.use("/notes", noteRoutes);
 app.use("/codeurs", codeurRoutes);
-app.use("/podcast", podcastRoutes);
 
-
-// api routes
  app.use("/notes", noteRoutes);
  app.use("/codeurs", codeurRoutes);
  app.use("/podcast", podcastRoutes);
