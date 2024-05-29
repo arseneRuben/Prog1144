@@ -10,13 +10,8 @@ import {
 const router = express.Router();
 
 /* READ */
-<<<<<<< HEAD
 router.get('/', getPodcasts); 
 router.get('/:id', getPodcast); 
-=======
-router.get('/podcasts', getPodcasts);
-router.get('/:id', getPodcast);
->>>>>>> c73393ec9817afeaafdf1262f6ed89772beff0af
 /* CREATE */
 router.post('/', createPodcast);
 /* UPDATE */
