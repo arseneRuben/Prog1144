@@ -28,6 +28,8 @@ app.use(express.json());
  app.use("/notes", noteRoutes);
  app.use("/codeurs", codeurRoutes);
  app.use("/podcast", podcastRoutes);
+ app.use("/podcasts", podcastRoutes);
+
 app.listen(port, () => {
   console.log(`server running on port ${port}`);
 });
