@@ -1,3 +1,4 @@
+#Podcast database
 CREATE DATABASE IF NOT EXISTS podcast;
 use podcast;
 
@@ -8,5 +9,7 @@ CREATE TABLE IF NOT EXISTS podcasts (
   `contents` text,
 	created_at timestamp default current_timestamp
 );
+
+
 
 
