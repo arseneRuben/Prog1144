@@ -10,8 +10,8 @@ import {
 const router = express.Router();
 
 /* READ */
-router.get('/', getPodcasts);
-router.get('/:id', getPodcast);
+router.get('/', getPodcasts); 
+router.get('/:id', getPodcast); 
 /* CREATE */
 router.post('/', createPodcast);
 /* UPDATE */

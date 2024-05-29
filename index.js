@@ -2,11 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 
-import noteRoutes from './src/routes/note.js'
-import codeurRoutes from './src/routes/codeur.js'
-import podcastRoutes from './src/routes/podcast.js'
-
-
+import noteRoutes from './src/routes/note.js';
+import codeurRoutes from './src/routes/codeur.js';
+import podcastRoutes from './src/routes/podcast.js';
 
 dotenv.config();
 
@@ -18,16 +16,14 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-
 app.use(cors(corsOptions));
-
 app.use(express.json());
 
+// API routes
+app.use("/notes", noteRoutes);
+app.use("/codeurs", codeurRoutes);
+app.use("/podcast", podcastRoutes);
 
-// api routes
- app.use("/notes", noteRoutes);
- app.use("/codeurs", codeurRoutes);
- app.use("/podcast", podcastRoutes);
 app.listen(port, () => {
-  console.log(`server running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });
