@@ -68,7 +68,7 @@ export const updatePodcast = async (req, res) => {
 export const deletePodcast = async (req, res) => {
     try {
         connect();
-        query('DELETE FROM podcast WHERE id=?', [req.params.id], (result) => {
+        query('DELETE FROM podcasts WHERE id=?', [req.params.id], (result) => {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON });
             res.end(JSON.stringify({ message: 'Podcast deleted', success: true }, null, 4));
             disconnect();
