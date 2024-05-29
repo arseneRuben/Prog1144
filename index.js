@@ -11,10 +11,10 @@ import podcastRoutes from './src/routes/podcast.js'
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 const corsOptions = {
-  origin: "http://localhost:8080", // for vite application
+  origin: "http://localhost:4000", // for vite application
   optionsSuccessStatus: 200,
 };
 
