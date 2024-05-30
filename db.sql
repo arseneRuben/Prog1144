@@ -1,19 +1,38 @@
-CREATE DATABASE IF NOT EXISTS podcast;
-use podcast;
-
+CREATE DATABASE IF NOT EXISTS notes_app;
+USE notes_app;
+ 
+CREATE TABLE IF NOT EXISTS codeurs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstname VARCHAR(255) NOT NULL,
+    lastname TEXT NOT NULL,
+    experience ENUM('JUNIOR', 'INTERMEDIAIRE', 'SENIOR') 
+);
+ 
+CREATE TABLE IF NOT EXISTS notes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    contents TEXT NOT NULL,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    idCodeur INT,
+    FOREIGN KEY (idCodeur) REFERENCES codeurs(id)
+);
+ 
+Drop table if exists podcasts;
+  
 CREATE TABLE IF NOT EXISTS podcasts (
-  `id` INT auto_increment PRIMARY KEY,
-  `title` varchar(255) not null,
-  `description` text,
-  `contents` text,
-	created_at timestamp default current_timestamp
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    filename VARCHAR(255),
+    langue VARCHAR(255),
+    id_program INT,
+    id_presentation INT,
+    create_at timestamp default current_timestamp(),
+    decription VARCHAR(255)
+    
 );
 
-ALTER TABLE podcasts
-ADD COLUMN filename varchar(255),
-ADD COLUMN langue varchar(255),
-ADD COLUMN id_program INT,
-ADD COLUMN id_presentation INT;
 
-ALTER TABLE podcasts
-DROP COLUMN contents;
+
+
+
+
