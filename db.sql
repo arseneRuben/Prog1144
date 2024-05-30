@@ -27,10 +27,13 @@ CREATE TABLE IF NOT EXISTS podcasts (
     id_program INT,
     id_presentation INT,
     create_at timestamp default current_timestamp(),
-    decription VARCHAR(255)
+    descriptions VARCHAR(255)
     
 );
 
+insert into podcasts(title, descriptions, filename, langue, id_program, id_presentation) values ("Lionel Messi", "Premiere arriver de Lionel Messi a Montreal", "messi.png", "fr", 1, null);
+
+select * from podcasts; 
 
 
 
