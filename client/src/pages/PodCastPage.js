@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Table, Button, Modal, Form } from 'react-bootstrap';
- 
+
 const PodCastPage = () => {
   const [podcasts, setPodcasts] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -13,17 +13,19 @@ const PodCastPage = () => {
     id_program: '',
     id_presentation: ''
   });
- 
+
+  // Utiliser useEffect pour récupérer les podcasts lors du premier rendu du composant
   useEffect(() => {
     fetchPodcasts();
   }, []);
- 
+
+  // Fonction pour récupérer les podcasts à partir du serveur
   const fetchPodcasts = async () => {
     try {
       const response = await fetch('http://localhost:5000/podcasts');
       if (response.ok) {
         const data = await response.json();
-        console.log('Fetched podcasts:', data); // Debugging line
+        console.log('Fetched podcasts:', data); 
         setPodcasts(data);
       } else {
         console.error('Failed to fetch podcasts:', response.statusText);
@@ -32,7 +34,8 @@ const PodCastPage = () => {
       console.error('Error fetching podcasts:', error);
     }
   };
- 
+
+  // Fonction pour supprimer un podcast
   const deletePodcast = async (id) => {
     try {
       await fetch(`http://localhost:5000/podcasts/${id}`, {
@@ -43,11 +46,13 @@ const PodCastPage = () => {
       console.error('Error deleting podcast:', error);
     }
   };
- 
+
+  // Fonction pour gérer les changements dans le formulaire
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
- 
+
+  // Fonction pour soumettre le formulaire et créer un nouveau podcast
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -59,7 +64,7 @@ const PodCastPage = () => {
         body: JSON.stringify(formData)
       });
       const data = await response.json();
-      console.log('Created podcast:', data); // Debugging line
+      console.log('Created podcast:', data); 
       setShowModal(false);
       setFormData({
         title: '',
@@ -74,7 +79,7 @@ const PodCastPage = () => {
       console.error('Error creating podcast:', error);
     }
   };
- 
+
   return (
     <Container style={{ marginTop: '20px' }}>
       <Row className="justify-content-md-center">
@@ -148,5 +153,5 @@ const PodCastPage = () => {
     </Container>
   );
 };
- 
+
 export default PodCastPage;
