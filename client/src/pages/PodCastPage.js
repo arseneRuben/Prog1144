@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Table, Button, Modal, Form } from 'react-bootstrap';
-
+ 
 const PodCastPage = () => {
   const [podcasts, setPodcasts] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -13,11 +13,11 @@ const PodCastPage = () => {
     id_program: '',
     id_presentation: ''
   });
-
+ 
   useEffect(() => {
     fetchPodcasts();
   }, []);
-
+ 
   const fetchPodcasts = async () => {
     try {
       const response = await fetch('http://localhost:5000/podcasts');
@@ -32,7 +32,7 @@ const PodCastPage = () => {
       console.error('Error fetching podcasts:', error);
     }
   };
-
+ 
   const deletePodcast = async (id) => {
     try {
       await fetch(`http://localhost:5000/podcasts/${id}`, {
@@ -43,11 +43,11 @@ const PodCastPage = () => {
       console.error('Error deleting podcast:', error);
     }
   };
-
+ 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -60,13 +60,21 @@ const PodCastPage = () => {
       });
       const data = await response.json();
       console.log('Created podcast:', data); // Debugging line
-      setPodcasts([...podcasts, data]);
       setShowModal(false);
+      setFormData({
+        title: '',
+        description: '',
+        filename: '',
+        langue: '',
+        id_program: '',
+        id_presentation: ''
+      });
+      fetchPodcasts();
     } catch (error) {
       console.error('Error creating podcast:', error);
     }
   };
-
+ 
   return (
     <Container style={{ marginTop: '20px' }}>
       <Row className="justify-content-md-center">
@@ -140,5 +148,5 @@ const PodCastPage = () => {
     </Container>
   );
 };
-
+ 
 export default PodCastPage;
