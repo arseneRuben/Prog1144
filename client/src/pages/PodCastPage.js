@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Table, Button, Modal, Form } from 'react-bootstrap';
- 
+
 const PodCastPage = () => {
   const [podcasts, setPodcasts] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -13,11 +13,11 @@ const PodCastPage = () => {
     id_program: '',
     id_presentation: ''
   });
- 
+
   useEffect(() => {
     fetchPodcasts();
   }, []);
- 
+
   const fetchPodcasts = async () => {
     try {
       const response = await fetch('http://localhost:5000/podcasts');
@@ -32,7 +32,7 @@ const PodCastPage = () => {
       console.error('Error fetching podcasts:', error);
     }
   };
- 
+
   const deletePodcast = async (id) => {
     try {
       await fetch(`http://localhost:5000/podcasts/${id}`, {
@@ -43,11 +43,11 @@ const PodCastPage = () => {
       console.error('Error deleting podcast:', error);
     }
   };
- 
+
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
- 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -66,14 +66,14 @@ const PodCastPage = () => {
       console.error('Error creating podcast:', error);
     }
   };
- 
+
   return (
     <Container style={{ marginTop: '20px' }}>
       <Row className="justify-content-md-center">
         <Col md="8" style={{ backgroundColor: '#f8f9fa', padding: '20px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
           <h2 style={{ textAlign: 'center', marginBottom: '20px', color: '#343a40', textTransform: 'uppercase' }}>Podcast Page</h2>
           <Button variant="primary" onClick={() => setShowModal(true)} style={{ marginBottom: '20px' }}>Create</Button>
-          <Table striped bordered hover className="mt-4" style={{ backgroundColor: '#ffffff', borderRadius: '8px' }}>
+          <Table striped bordered hover className="mt-4" style={{ backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid #000000' }}>
             <thead style={{ backgroundColor: '#007bff', color: '#ffffff', fontWeight: 'bold' }}>
               <tr>
                 <th>Title</th>
@@ -140,5 +140,5 @@ const PodCastPage = () => {
     </Container>
   );
 };
- 
+
 export default PodCastPage;
