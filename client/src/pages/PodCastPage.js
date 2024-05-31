@@ -5,7 +5,9 @@ import { Button } from 'bootstrap'
 const PodCastPage = () => {
   return (
     <h2>PodCastPage</h2>
+    
   )
+
 }
 
 export default PodCastPage
