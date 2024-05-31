@@ -32,6 +32,8 @@ CREATE TABLE IF NOT EXISTS podcasts (
 );
 
 insert into podcasts(title, descriptions, filename, langue, id_program, id_presentation) values ("Lionel Messi", "Premiere arriver de Lionel Messi a Montreal", "messi.png", "fr", 1, null);
+insert into podcasts(title, descriptions, filename, langue, id_program, id_presentation) values ("Second Podcast", "This is a second Podcast", "podcast2.mp3", "fr", 2, 101);
+insert into podcasts(title, descriptions, filename, langue, id_program, id_presentation) values ("Third Podcast", "This is a third Podcast", "podcast3.mp3", "fr", 3, 102);
 
 select * from podcasts; 
 
