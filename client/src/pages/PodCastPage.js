@@ -17,10 +17,10 @@ const PodCastPage = () => {
   };
 
   return (
-    <Container>
+    <Container style={{ marginTop: '20px' }}>
       <Row className="justify-content-md-center">
-        <Col md="8">
-          <h2>Podcast Page</h2>
+        <Col md="8" style={{ backgroundColor: '#f8f9fa', padding: '20px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
+          <h2 style={{ textAlign: 'center', marginBottom: '20px', color: '#343a40' }}>Podcast Page</h2>
           <Table striped bordered hover className="mt-4">
             <thead>
               <tr>
