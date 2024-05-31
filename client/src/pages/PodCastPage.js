@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+<<<<<<< HEAD
 import { Button, Form, ListGroup } from 'react-bootstrap';
 
 const PodCastPage = () => {
@@ -10,18 +11,29 @@ const PodCastPage = () => {
   const [langue, setLangue] = useState('');
   const [idProgram, setIdProgram] = useState('');
   const [idPresentation, setIdPresentation] = useState('');
+=======
+import { Container, Row, Col, Table } from 'react-bootstrap';
+
+const PodCastPage = () => {
+  const [podcasts, setPodcasts] = useState([]);
+>>>>>>> 5f65a23b360551ebb7260b5fbbf0f8ec62d8149b
 
   useEffect(() => {
     fetchPodcasts();
   }, []);
 
   const fetchPodcasts = () => {
+<<<<<<< HEAD
     fetch('http://localhost:3001/podcasts')
+=======
+    fetch('http://localhost:5000/podcasts')
+>>>>>>> 5f65a23b360551ebb7260b5fbbf0f8ec62d8149b
       .then(response => response.json())
       .then(data => setPodcasts(data))
       .catch(error => console.error('Error fetching podcasts:', error));
   };
 
+<<<<<<< HEAD
   const handleSubmit = (e) => {
     e.preventDefault();
     const newPodcast = { title, descriptions, filename, langue, id_program: idProgram, id_presentation: idPresentation };
@@ -94,3 +106,41 @@ const PodCastPage = () => {
 };
 
 export default PodCastPage;
+=======
+  return (
+    <Container>
+      <Row className="justify-content-md-center">
+        <Col md="8">
+          <h2>Podcast Page</h2>
+          <Table striped bordered hover className="mt-4">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Filename</th>
+                <th>Language</th>
+                <th>Id Program</th>
+                <th>Id Presentation</th>
+              </tr>
+            </thead>
+            <tbody>
+              {podcasts.map((podcast, index) => (
+                <tr key={index}>
+                  <td>{podcast.title}</td>
+                  <td>{podcast.descriptions}</td>
+                  <td>{podcast.filename}</td>
+                  <td>{podcast.langue}</td>
+                  <td>{podcast.id_program}</td>
+                  <td>{podcast.id_presentation}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
+
+export default PodCastPage;
+>>>>>>> 5f65a23b360551ebb7260b5fbbf0f8ec62d8149b
