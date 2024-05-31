@@ -9,11 +9,14 @@ const PodCastPage = () => {
     fetchPodcasts();
   }, []);
 
-  const fetchPodcasts = () => {
-    fetch('http://localhost:5000/podcasts')
-      .then(response => response.json())
-      .then(data => setPodcasts(data))
-      .catch(error => console.error('Error fetching podcasts:', error));
+  const fetchPodcasts = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/podcasts');
+      const data = await response.json();
+      setPodcasts(data);
+    } catch (error) {
+      console.error('Error fetching podcasts:', error);
+    }
   };
 
   return (
