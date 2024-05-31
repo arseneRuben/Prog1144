@@ -9,12 +9,12 @@ const PodCastPage = () => {
   const [podcasts, setPodcasts] = useState([]); // État pour stocker les podcasts
   const [showModal, setShowModal] = useState(false); // État pour gérer la visibilité du modal
   const [formData, setFormData] = useState({
-    title: '', // État pour le titre du podcast
-    description: '', // État pour la description du podcast
-    filename: '', // État pour le nom de fichier du podcast
-    langue: '', // État pour la langue du podcast
-    id_program: '', // État pour l'ID du programme
-    id_presentation: '' // État pour l'ID de la présentation
+    title: '', 
+    description: '', 
+    filename: '', 
+    langue: '', 
+    id_program: '', 
+    id_presentation: '' 
   });
 
   // Utilisation de useEffect pour récupérer les podcasts lors du premier rendu du composant
@@ -68,7 +68,7 @@ const PodCastPage = () => {
       });
       const data = await response.json(); // Conversion de la réponse en JSON
       console.log('Created podcast:', data); // Affichage du nouveau podcast dans la console
-      setShowModal(false); // Fermeture du modal
+      setShowModal(false); 
       setFormData({ // Réinitialisation des données du formulaire
         title: '',
         description: '',
