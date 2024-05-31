@@ -5,9 +5,6 @@ import cors from "cors";
 import noteRoutes from './src/routes/note.js';
 import codeurRoutes from './src/routes/codeur.js';
 import podcastRoutes from './src/routes/podcast.js';
-
-import noteRoutes from './src/routes/note.js'
-import codeurRoutes from './src/routes/codeur.js'
 import programRoutes from './src/routes/program.js'
 
 
