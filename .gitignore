@@ -39,6 +39,7 @@ bower_components
 build/Release
 
 # Dependency directories
+client/node_modules/
 node_modules/
 jspm_packages/
 
@@ -132,3 +133,4 @@ dist
 
 # add /uploads in gitignore
 /uploads
+

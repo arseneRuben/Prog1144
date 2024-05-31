@@ -16,7 +16,6 @@ CREATE TABLE IF NOT EXISTS notes (
     idCodeur INT,
     FOREIGN KEY (idCodeur) REFERENCES codeurs(id)
 );
-
  
 Drop table if exists podcasts;
   
@@ -36,9 +35,7 @@ insert into podcasts(title, descriptions, filename, langue, id_program, id_prese
 
 select * from podcasts; 
 
-ALTER TABLE notes ADD column idCodeur int DEFAULT(1);
-ALTER TABLE notes ADD FOREIGN KEY fk_notes_codeurs(idCodeur) REFERENCES codeurs(id) ON DELETE CASCADE;
 
 
-select * from notes ;
+
 
