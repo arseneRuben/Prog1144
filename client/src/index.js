@@ -1,40 +1,17 @@
-import express from "express";
-import dotenv from "dotenv";
-import cors from "cors";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-import noteRoutes from './src/routes/note.js';
-import codeurRoutes from './src/routes/codeur.js';
-import podcastRoutes from './src/routes/podcast.js';
-import programRoutes from './src/routes/program.js'
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
-
-
-dotenv.config();
-
-const app = express();
-const port = process.env.PORT || 5000;
-
-const corsOptions = {
-  origin: "http://localhost:3000", // for vite application
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
-
-app.use(express.json());
-
-// API routes
-
-
- app.use("/notes", noteRoutes);
- app.use("/codeurs", codeurRoutes);
-
- app.use("/podcast", podcastRoutes);
- app.use("/podcasts",podcastRoutes);
-
-
- app.use("/programs", programRoutes);
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
