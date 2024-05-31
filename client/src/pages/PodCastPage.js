@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col, Table } from 'react-bootstrap';
+import { Container, Row, Col, Table, Button } from 'react-bootstrap';
 
 const PodCastPage = () => {
   const [podcasts, setPodcasts] = useState([]);
@@ -19,6 +19,17 @@ const PodCastPage = () => {
     }
   };
 
+  const deletePodcast = async (id) => {
+    try {
+      await fetch(`http://localhost:5000/podcasts/${id}`, {
+        method: 'DELETE',
+      });
+      setPodcasts(podcasts.filter(podcast => podcast.id !== id));
+    } catch (error) {
+      console.error('Error deleting podcast:', error);
+    }
+  };
+
   return (
     <Container style={{ marginTop: '20px' }}>
       <Row className="justify-content-md-center">
@@ -33,17 +44,21 @@ const PodCastPage = () => {
                 <th>Language</th>
                 <th>Id Program</th>
                 <th>Id Presentation</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {podcasts.map((podcast, index) => (
-                <tr key={index}>
+              {podcasts.map((podcast) => (
+                <tr key={podcast.id}>
                   <td>{podcast.title}</td>
                   <td>{podcast.descriptions}</td>
                   <td>{podcast.filename}</td>
                   <td>{podcast.langue}</td>
                   <td>{podcast.id_program}</td>
                   <td>{podcast.id_presentation}</td>
+                  <td>
+                    <Button variant="danger" onClick={() => deletePodcast(podcast.id)}>Delete</Button>
+                  </td>
                 </tr>
               ))}
             </tbody>
