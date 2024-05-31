@@ -3,8 +3,9 @@ import React from "react";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import PodCastPage from './pages/PodCastPage';
 import ProgramPage from './pages/ProgramPage';
+import AnimatorPage from './pages/AnimatorPage';
 import "bootstrap/dist/css/bootstrap.min.css"
-import { Button } from 'bootstrap'
+//import { Button } from 'bootstrap'
 import Navbar from './components/Navbar';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Routes>
             <Route path='/podcasts' element={<PodCastPage/>}/>
             <Route path='/programs' element={<ProgramPage/>}/>
+            <Route path='/animators' element={<AnimatorPage/>}/>
         </Routes>
       </Router>
     </div>
