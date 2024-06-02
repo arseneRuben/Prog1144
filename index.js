@@ -15,7 +15,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 const corsOptions = {
-  origin: "http://localhost:4000", // for vite application
+  origin: "http://localhost:3000", // for vite application
   optionsSuccessStatus: 200,
 };
 
