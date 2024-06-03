@@ -1,3 +1,17 @@
+
+use notes_app;
+
+CREATE TABLE IF NOT EXISTS `program` (
+  `id` integer   auto_increment,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+
+
+select * from program ;
+
 CREATE DATABASE IF NOT EXISTS notes_app;
 USE notes_app;
  
@@ -68,5 +82,6 @@ CREATE TABLE `animator` (
   `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 
