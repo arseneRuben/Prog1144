@@ -29,14 +29,14 @@ export function connect() {
     });
 }
 
-export function query(query, values, resultCallback) {
+export function query (query, values, resultCallback) {
     connection.query(query, values, (error, result) => {
         if (error) {
-            console.error('Error executing query:', error);
-            throw error;
+            resultCallback(error, null);
+        } else {
+            resultCallback(null, result);
         }
-        resultCallback(result);
-    });
+    })
 }
 
 export function disconnect() {

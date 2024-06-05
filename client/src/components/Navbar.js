@@ -37,6 +37,11 @@ const Navbar = () => {
                 Program
               </a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/events">
+                Events
+              </a>
+            </li>
           </ul>
         </div>
       </div>
