@@ -17,7 +17,6 @@ const PodCastPage = () => {
     id_program: '', 
     id_presentation: '' 
   });
-  const [error, setError] = useState(null); // État pour gérer les erreurs
 
   // Utilisation de useEffect pour récupérer les podcasts lors du premier rendu du composant
   useEffect(() => {
@@ -39,7 +38,6 @@ const PodCastPage = () => {
       });
       setPodcasts(prevPodcasts => [...prevPodcasts, ...response.data.podcasts]);
     } catch (error) {
-      setError(error);
       console.error('Error fetching podcasts:', error);
     }
   };
@@ -50,7 +48,6 @@ const PodCastPage = () => {
       const response = await axios.get('http://localhost:5000/podcasts');
       setPodcasts(prevPodcasts => [...prevPodcasts, ...response.data]);
     } catch (error) {
-      setError(error);
       console.error('Error fetching local podcasts:', error);
     }
   };
@@ -97,25 +94,6 @@ const PodCastPage = () => {
       fetchLocalPodcasts();
     } catch (error) {
       console.error('Error creating podcast:', error);
-    }
-  };
-
-  // Fonction pour rechercher un podcast sur Listen Notes
-  const searchPodcast = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.get('https://listen-api.listennotes.com/api/v2/search', {
-        headers: {
-          'X-ListenAPI-Key': 'bd56402f4ad34a8c816ddde062821e3e'
-        },
-        params: {
-          q: formData.title
-        }
-      });
-      setPodcasts(response.data.results);
-    } catch (error) {
-      setError(error);
-      console.error('Error searching podcast:', error);
     }
   };
 
