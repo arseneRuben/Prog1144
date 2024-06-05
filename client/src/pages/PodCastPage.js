@@ -27,7 +27,7 @@ const PodCastPage = () => {
 
   // Fonction pour récupérer le token Spotify
   const fetchSpotifyToken = async () => {
-    const clientId = 'fe4a32aa4ded4c31b3d93795f49eddd6’;
+   const clientId = 'fe4a32aa4ded4c31b3d93795f49eddd6';
     const clientSecret = '9964604fc107428cb51ba491455cfc18';
     const authString = btoa(`${clientId}:${clientSecret}`);
 
