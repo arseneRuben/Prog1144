@@ -95,7 +95,7 @@ function CreateProgramPage() {
 				{/* Redirecting back to home page */}
 				<Link className="d-grid gap-2" to="/programs">
 					<Button variant="info" size="lg">
-						Home
+						ProgramPage
 					</Button>
 				</Link>
 			</Form>
