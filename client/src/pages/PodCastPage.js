@@ -148,7 +148,7 @@ const PodCastPage = () => {
               {podcasts.map((podcast, index) => (
                 <tr key={index} style={{ backgroundColor: index % 2 === 0 ? '#f2f2f2' : '#ffffff' }}>
                   <td>{podcast.title}</td>
-                  <td>{podcast.description}</td>
+                  <td>{podcast.descriptions}</td>
                   <td>{podcast.filename}</td>
                   <td>{podcast.langue}</td>
                   <td>{podcast.id_program}</td>
