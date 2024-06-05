@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { jwtDecode as jwt_decode } from 'jwt-decode';
-//import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import '../css/style-login.css';
 
 // Declare google as a global variable
@@ -71,7 +71,7 @@ const AnimatorPage = () => {
           </label>
           <div className={`light ${isToggled ? 'on' : 'off'}`}></div>
 
-          <h4 style={{ textAlign: 'left', margin: '20px 0',color:'red' }}>Login/ Sign In</h4>
+          <h4 style={{ textAlign: 'left', margin: '20px 0' }}>Login/ Sign In</h4>
           <div className="input-box">
             <span className="icon">
               <ion-icon name="mail"></ion-icon>
@@ -110,7 +110,7 @@ const AnimatorPage = () => {
         <div>
           <br />
           <img src={user.picture} alt="User" />
-          <h3 style={{ color: 'yellow' }}>{user.name}</h3>
+          <h3 style={{ color: 'marron' }}>{user.name}</h3>
         </div>
       }
     </div>

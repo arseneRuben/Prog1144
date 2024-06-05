@@ -11,7 +11,7 @@ import Navbar from './components/Navbar';
 function App() {
   return (
     <div className="App">
-      <Navbar/>
+      <Navbar/> <br/>
       <h1> Welcome to api rest project</h1>
       <Router>
         <Routes>
