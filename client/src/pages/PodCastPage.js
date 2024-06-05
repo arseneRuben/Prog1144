@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Table, Button, Modal, Form } from 'react-bootstrap';
+import axios from 'axios';
 
 // Définition du composant PodCastPage
 const PodCastPage = () => {
@@ -17,11 +18,32 @@ const PodCastPage = () => {
     id_program: '', 
     id_presentation: '' 
   });
+  const [spotifyToken, setSpotifyToken] = useState(''); // État pour stocker le token Spotify
 
-  // Utilisation de useEffect pour récupérer les podcasts lors du premier rendu du composant
+  // Utilisation de useEffect pour récupérer les podcasts et token lors du premier rendu du composant
   useEffect(() => {
     fetchPodcasts();
+    fetchSpotifyToken();
   }, []);
+
+  // Fonction pour récupérer le token Spotify
+  const fetchSpotifyToken = async () => {
+    const clientId = 'fe4a32aa4ded4c31b3d93795f49eddd6’;
+    const clientSecret = '9964604fc107428cb51ba491455cfc18';
+    const authString = btoa(`${clientId}:${clientSecret}`);
+
+    try {
+      const response = await axios.post('https://accounts.spotify.com/api/token', 'grant_type=client_credentials', {
+        headers: {
+          'Authorization': `Basic ${authString}`,
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      });
+      setSpotifyToken(response.data.access_token);
+    } catch (error) {
+      console.error('Error fetching Spotify token:', error);
+    }
+  };
 
   // Fonction pour récupérer les podcasts à partir du serveur
   const fetchPodcasts = async () => {
@@ -84,6 +106,24 @@ const PodCastPage = () => {
     }
   };
 
+  // Fonction pour rechercher un podcast sur Spotify
+const searchSpotify = async (query) => {
+  try {
+    const response = await axios.get('https://api.spotify.com/v1/search', {
+      headers: {
+        'Authorization': `Bearer ${spotifyToken}`
+      },
+      params: {
+        q: query,
+        type: 'podcast'
+      }
+    });
+    console.log('Spotify search results:', response.data);
+    // Handle the search results here
+  } catch (error) {
+    console.error('Error searching Spotify:', error);
+  }
+};
   // Rendu du composant PodCastPage
   return (
     <Container style={{ marginTop: '20px' }}>
@@ -91,6 +131,7 @@ const PodCastPage = () => {
         <Col md="8" style={{ backgroundColor: '#f8f9fa', padding: '20px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
           <h2 style={{ textAlign: 'center', marginBottom: '20px', color: '#343a40', textTransform: 'uppercase' }}>Podcast Page</h2>
           <Button variant="primary" onClick={() => setShowModal(true)} style={{ marginBottom: '20px' }}>Create</Button>
+          <Button variant="info" onClick={() => searchSpotify('Your Search Query')} style={{ marginBottom: '20px', marginLeft: '10px' }}>Search Spotify</Button>
           <Table striped bordered hover className="mt-4" style={{ backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid #000000' }}>
             <thead style={{ backgroundColor: '#007bff', color: '#ffffff', fontWeight: 'bold' }}>
               <tr>
