@@ -34,7 +34,8 @@ const PodCastPage = () => {
         },
         params: {
           genre_id: 68, // You can customize this based on your preference
-          page: 1
+          page: 1,
+          limit:12
         }
       });
       setPodcasts(prevPodcasts => [...prevPodcasts, ...response.data.podcasts]);
