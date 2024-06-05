@@ -3,27 +3,28 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Table, Button, Modal, Form } from 'react-bootstrap';
 import axios from 'axios';
-
+import '../css/style.css'; // Adjust the path according to your directory structure
+ 
 // Définition du composant PodCastPage
 const PodCastPage = () => {
   // Déclaration des états locaux avec useState
   const [podcasts, setPodcasts] = useState([]); // État pour stocker les podcasts
   const [showModal, setShowModal] = useState(false); // État pour gérer la visibilité du modal
   const [formData, setFormData] = useState({
-    title: '', 
-    description: '', 
-    filename: '', 
-    langue: '', 
-    id_program: '', 
-    id_presentation: '' 
+    title: '',
+    description: '',
+    filename: '',
+    langue: '',
+    id_program: '',
+    id_presentation: ''
   });
-
+ 
   // Utilisation de useEffect pour récupérer les podcasts lors du premier rendu du composant
   useEffect(() => {
     fetchPodcasts();
     fetchLocalPodcasts();
   }, []);
-
+ 
   // Fonction pour récupérer les podcasts à partir de Listen Notes
   const fetchPodcasts = async () => {
     try {
@@ -33,7 +34,8 @@ const PodCastPage = () => {
         },
         params: {
           genre_id: 68, // You can customize this based on your preference
-          page: 1
+          page: 1,
+          limit:12
         }
       });
       setPodcasts(prevPodcasts => [...prevPodcasts, ...response.data.podcasts]);
@@ -41,7 +43,7 @@ const PodCastPage = () => {
       console.error('Error fetching podcasts:', error);
     }
   };
-
+ 
   // Fonction pour récupérer les podcasts depuis la base de données locale
   const fetchLocalPodcasts = async () => {
     try {
@@ -51,7 +53,7 @@ const PodCastPage = () => {
       console.error('Error fetching local podcasts:', error);
     }
   };
-
+ 
   // Fonction pour supprimer un podcast de la base de données locale
   const deletePodcast = async (id) => {
     try {
@@ -63,12 +65,12 @@ const PodCastPage = () => {
       console.error('Error deleting podcast:', error);
     }
   };
-
+ 
   // Fonction pour gérer les changements dans le formulaire
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+ 
   // Fonction pour soumettre le formulaire et créer un nouveau podcast
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -96,7 +98,7 @@ const PodCastPage = () => {
       console.error('Error creating podcast:', error);
     }
   };
-
+ 
   // Rendu du composant PodCastPage
   return (
     <Container style={{ marginTop: '20px' }}>
@@ -171,5 +173,5 @@ const PodCastPage = () => {
     </Container>
   );
 };
-
-export default PodCastPage;
+ 
+export default PodCastPage
