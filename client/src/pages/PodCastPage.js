@@ -26,7 +26,7 @@ const PodCastPage = () => {
   // Fonction pour récupérer les podcasts à partir du serveur
   const fetchPodcasts = async () => {
     try {
-      const response = await fetch('http://localhost:5000/podcasts'); // Requête GET pour récupérer les podcasts
+      const response = await fetch('http://localhost:8000/podcasts'); // Requête GET pour récupérer les podcasts
       if (response.ok) {
         const data = await response.json(); // Conversion de la réponse en JSON
         console.log('Fetched podcasts:', data); // Affichage des podcasts dans la console
@@ -42,7 +42,7 @@ const PodCastPage = () => {
   // Fonction pour supprimer un podcast
   const deletePodcast = async (id) => {
     try {
-      await fetch(`http://localhost:5000/podcasts/${id}`, {
+      await fetch(`http://localhost:8000/podcasts/${id}`, {
         method: 'DELETE', // Requête DELETE pour supprimer un podcast
       });
       setPodcasts(podcasts.filter(podcast => podcast.id !== id)); // Mise à jour de l'état des podcasts après suppression
@@ -60,7 +60,7 @@ const PodCastPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // Empêche le comportement par défaut du formulaire
     try {
-      const response = await fetch('http://localhost:5000/podcasts', {
+      const response = await fetch('http://localhost:8000/podcasts', {
         method: 'POST', // Requête POST pour créer un nouveau podcast
         headers: {
           'Content-Type': 'application/json' // Définition des en-têtes de la requête

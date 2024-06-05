@@ -1,6 +1,3 @@
-
-// Filename - pages/ProgramPage.js
-
 import React, { useState, useEffect } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Table } from "react-bootstrap";
@@ -33,6 +30,23 @@ const ProgramPage = () => {
   //     history(`/edit`, { state: { id, title, description } });
   // }
 
+  
+  const idDelete = async (id) => {
+    const confirmDelete = window.confirm("Êtes-vous sûr de vouloir supprimer cet élément ?");
+    if (!confirmDelete) {
+      return;
+    }
+
+    try {
+      await axios.delete(`${baseURL}/programs/${id}`);
+      setPrograms(programs.filter((program) => program.id !== id));
+      history.push('/programs'); // Redirection vers la page /programs après suppression
+    } catch (error) {
+      console.error('Erreur :', error);
+    }
+  };
+
+
   return (
 
       <div style={{ margin: "5rem" }}>
@@ -59,15 +73,11 @@ const ProgramPage = () => {
                     value in the jsx with 
                     onclick event */}
                   <td>
-                    
-                      <Button
-                        
-                        variant="info"
-                        
-                      >
+                    <Link to={`/podcasts/${item.id}`}>
+                      <Button variant="info">
                         Show
                       </Button>
-                    
+                    </Link>
                   </td>
                   <td>
                     <Link to={`/edit`}>
@@ -89,12 +99,13 @@ const ProgramPage = () => {
                   {/* Using thr deleted function passing
                     the id of an entry */}
                   <td>
-                    <Button
-                      
-                      variant="danger"
-                    >
-                      Delete
-                    </Button>
+                  <Link to={`/programs/${item.id}`}>
+                      <Button variant="danger"
+                              onClick={(e) => { e.preventDefault(); idDelete(item.id); }}
+                      >
+                        Delete
+                      </Button>
+                    </Link>
                   </td>
                 </tr>
               );
