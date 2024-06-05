@@ -27,9 +27,9 @@ const PodCastPage = () => {
 
   // Fonction pour récupérer le token Spotify
   const fetchSpotifyToken = async () => {
-   const clientId = 'fe4a32aa4ded4c31b3d93795f49eddd6';
+    const clientId = 'fe4a32aa4ded4c31b3d93795f49eddd6';
     const clientSecret = '9964604fc107428cb51ba491455cfc18';
-    const authString = btoa(`${clientId}:${clientSecret}`);
+    const authString = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
 
     try {
       const response = await axios.post('https://accounts.spotify.com/api/token', 'grant_type=client_credentials', {
@@ -106,23 +106,24 @@ const PodCastPage = () => {
   };
 
   // Fonction pour rechercher un podcast sur Spotify
-const searchSpotify = async (query) => {
-  try {
-    const response = await axios.get('https://api.spotify.com/v1/search', {
-      headers: {
-        'Authorization': `Bearer ${spotifyToken}`
-      },
-      params: {
-        q: query,
-        type: 'podcast'
-      }
-    });
-    console.log('Spotify search results:', response.data);
-    // Handle the search results here
-  } catch (error) {
-    console.error('Error searching Spotify:', error);
-  }
-};
+  const searchSpotify = async (query) => {
+    try {
+      const response = await axios.get('https://api.spotify.com/v1/search', {
+        headers: {
+          'Authorization': `Bearer ${spotifyToken}`
+        },
+        params: {
+          q: query,
+          type: 'podcast'
+        }
+      });
+      console.log('Spotify search results:', response.data);
+      // Handle the search results here
+    } catch (error) {
+      console.error('Error searching Spotify:', error);
+    }
+  };
+
   // Rendu du composant PodCastPage
   return (
     <Container style={{ marginTop: '20px' }}>
@@ -147,7 +148,7 @@ const searchSpotify = async (query) => {
               {podcasts.map((podcast, index) => (
                 <tr key={index} style={{ backgroundColor: index % 2 === 0 ? '#f2f2f2' : '#ffffff' }}>
                   <td>{podcast.title}</td>
-                  <td>{podcast.descriptions}</td>
+                  <td>{podcast.description}</td>
                   <td>{podcast.filename}</td>
                   <td>{podcast.langue}</td>
                   <td>{podcast.id_program}</td>
@@ -191,7 +192,7 @@ const searchSpotify = async (query) => {
               <Form.Label>Id Presentation</Form.Label>
               <Form.Control type="text" placeholder="Enter Id Presentation" name="id_presentation" value={formData.id_presentation} onChange={handleInputChange} required />
             </Form.Group>
-            <Button variant="primary" type="submit">Submit</Button>
+            <Button variant="primary" type="submit">Create Podcast</Button>
           </Form>
         </Modal.Body>
       </Modal>
@@ -200,4 +201,3 @@ const searchSpotify = async (query) => {
 };
 
 export default PodCastPage;
-
