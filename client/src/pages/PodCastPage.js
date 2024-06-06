@@ -26,53 +26,24 @@ const PodCastPage = () => {
   }, []);
  
   // Fonction pour récupérer les podcasts à partir de Listen Notes
-  // Function to truncate the description to a maximum length
-const truncateDescription = (description, maxLength) => {
-  if (description.length > maxLength) {
-    return description.substring(0, maxLength) + '...'; // Truncate and append ellipsis
-  }
-  return description;
-};
-
-// Inside the fetchPodcasts function
-// Inside the fetchPodcasts function
-const fetchPodcasts = async () => {
-  try {
-    const response = await axios.get('https://listen-api.listennotes.com/api/v2/best_podcasts', {
-      headers: {
-        'X-ListenAPI-Key': 'bd56402f4ad34a8c816ddde062821e3e'
-      },
-      params: {
-        genre_id: 68,
-        page: 1,
-        limit: 12
-      }
-    });
-
-    const fetchedPodcasts = response.data.podcasts;
-
-    // Filter out existing podcasts to avoid duplicates
-    const newPodcasts = fetchedPodcasts.filter(podcast => {
-      return !podcasts.some(existingPodcast => existingPodcast.title === podcast.title);
-    });
-
-    // Update the state with new podcasts
-    setPodcasts(prevPodcasts => [...prevPodcasts, ...newPodcasts]);
-
-    // Save new podcasts to the database
-    newPodcasts.forEach(async (podcast) => {
-      podcast.description = truncateDescription(podcast.description, 200); // Truncate description if needed
-      try {
-        // Send the truncated podcast data to your backend for storage
-        await axios.post('http://localhost:5000/podcasts', podcast);
-      } catch (error) {
-        console.error('Error saving podcast to database:', error);
-      }
-    });
-  } catch (error) {
-    console.error('Error fetching podcasts:', error);
-  }
-};
+  const fetchPodcasts = async () => {
+    try {
+      const response = await axios.get('https://listen-api.listennotes.com/api/v2/best_podcasts', {
+        headers: {
+          'X-ListenAPI-Key': 'bd56402f4ad34a8c816ddde062821e3e'
+        },
+        params: {
+          genre_id: 68, // You can customize this based on your preference
+          page: 1,
+          limit:12
+        }
+      });
+      setPodcasts(prevPodcasts => [...prevPodcasts, ...response.data.podcasts]);
+    } catch (error) {
+      console.error('Error fetching podcasts:', error);
+    }
+  };
+ 
   // Fonction pour récupérer les podcasts depuis la base de données locale
   const fetchLocalPodcasts = async () => {
     try {
