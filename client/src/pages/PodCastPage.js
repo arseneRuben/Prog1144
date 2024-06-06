@@ -30,7 +30,7 @@ const PodCastPage = () => {
     try {
       const response = await axios.get('https://listen-api.listennotes.com/api/v2/best_podcasts', {
         headers: {
-          'X-ListenAPI-Key': 'bd56402f4ad34a8c816ddde062821e3e'
+          'X-ListenAPI-Key': '936ec5bd33444626814b68f4e93c00f7'
         },
         params: {
           genre_id: 68, // You can customize this based on your preference
@@ -60,6 +60,7 @@ const PodCastPage = () => {
       await fetch(`http://localhost:5000/podcasts/${id}`, {
         method: 'DELETE',
       });
+      
       setPodcasts(podcasts.filter(podcast => podcast.id !== id));
     } catch (error) {
       console.error('Error deleting podcast:', error);
