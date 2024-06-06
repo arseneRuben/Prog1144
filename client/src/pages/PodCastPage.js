@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Table, Button, Modal, Form } from 'react-bootstrap';
 import axios from 'axios';
-import '../css/style.css'; // Adjust the path according to your directory structure
+import '../css/style.css'; 
  
 // Définition du composant PodCastPage
 const PodCastPage = () => {
@@ -33,7 +33,7 @@ const PodCastPage = () => {
           'X-ListenAPI-Key': '936ec5bd33444626814b68f4e93c00f7'
         },
         params: {
-          genre_id: 68, // You can customize this based on your preference
+          genre_id: 68, 
           page: 1,
           limit:12
         }
