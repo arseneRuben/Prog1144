@@ -99,7 +99,7 @@ const PodCastPage = () => {
     }
   };
  
-  // Rendu du composant PodCastPage
+  // Rendus du composant PodCastPage
   return (
     <Container style={{ marginTop: '20px' }}>
 <Row className="justify-content-md-center">
