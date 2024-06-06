@@ -6,7 +6,16 @@ import { CONTENT_TYPE_JSON, HTTP_OK } from '../dao/util.js'
 export const getPrograms = async (req, res) => {
     try {
         connect()
-        query('SELECT * FROM program', [], (resp) => {
+        query(`
+        SELECT 
+            p.id AS id,
+            p.title AS title, 
+            p.description AS description,
+            CONCAT(pd.title, ' || ', pd.filename, ' || ', pd.langue, ' || ', pd.descriptions) AS podcasts
+        FROM 
+            program p
+        LEFT JOIN 
+            podcasts pd ON p.id = pd.id_program;`, [], (resp) => {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON })
             res.end(JSON.stringify(resp, null, 4))
         })
