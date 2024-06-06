@@ -102,40 +102,40 @@ const PodCastPage = () => {
   // Rendu du composant PodCastPage
   return (
     <Container style={{ marginTop: '20px' }}>
-      <Row className="justify-content-md-center">
-        <Col md="8" style={{ backgroundColor: '#f8f9fa', padding: '20px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
-          <h2 style={{ textAlign: 'center', marginBottom: '20px', color: '#343a40', textTransform: 'uppercase' }}>Podcast Page</h2>
-          <Button variant="primary" onClick={() => setShowModal(true)} style={{ marginBottom: '20px' }}>Create</Button>
-          <Table striped bordered hover className="mt-4" style={{ backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid #000000' }}>
-            <thead style={{ backgroundColor: '#007bff', color: '#ffffff', fontWeight: 'bold' }}>
-              <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Filename</th>
-                <th>Langue</th>
-                <th>Id Program</th>
-                <th>Id Presentation</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {podcasts.map((podcast, index) => (
-                <tr key={index} style={{ backgroundColor: index % 2 === 0 ? '#f2f2f2' : '#ffffff' }}>
-                  <td>{podcast.title}</td>
-                  <td>{podcast.description}</td>
-                  <td>{podcast.filename}</td>
-                  <td>{podcast.langue}</td>
-                  <td>{podcast.id_program}</td>
-                  <td>{podcast.id_presentation}</td>
-                  <td>
-                    <Button variant="danger" onClick={() => deletePodcast(podcast.id)}>Delete</Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </Col>
-      </Row>
+<Row className="justify-content-md-center">
+    <Col md="10" style={{ backgroundColor: '#f8f9fa', padding: '20px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}>
+      <h2 style={{ textAlign: 'center', marginBottom: '20px', color: '#343a40', textTransform: 'uppercase' }}>Podcast Page</h2>
+      <Button variant="primary" onClick={() => setShowModal(true)} style={{ marginBottom: '20px' }}>Create</Button>
+      <Table striped bordered hover className="mt-4" style={{ backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid #000000' }}>
+        <thead style={{ backgroundColor: '#007bff', color: '#ffffff', fontWeight: 'bold' }}>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Filename</th>
+            <th>Langue</th>
+            <th>Id Program</th>
+            <th>Id Presentation</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {podcasts.map((podcast, index) => (
+            <tr key={index} style={{ backgroundColor: index % 2 === 0 ? '#f2f2f2' : '#ffffff' }}>
+              <td>{podcast.title}</td>
+              <td style={{ maxWidth: '200px', maxHeight: '50px', overflowY: 'auto' }}>{podcast.description}</td>
+              <td>{podcast.filename}</td>
+              <td>{podcast.langue}</td>
+              <td>{podcast.id_program}</td>
+              <td>{podcast.id_presentation}</td>
+              <td>
+                <Button variant="danger" onClick={() => deletePodcast(podcast.id)}>Delete</Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </Col>
+  </Row>
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Create New Podcast</Modal.Title>
