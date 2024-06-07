@@ -7,7 +7,9 @@ import axios from "axios";
 export const baseURL = "http://localhost:8000";
 
 const ProgramPage = () => {
+    
     let history = useNavigate();
+    const navigate = useNavigate(); 
     const [programs, setPrograms] = useState([]);
 
     useEffect(() => {
@@ -18,9 +20,13 @@ const ProgramPage = () => {
     }, []);
 
     function setID(id, title, description) {
-        history(`${baseURL}/Programs`);
+        localStorage.setItem('id', id);
+        localStorage.setItem('title', title);
+        localStorage.setItem('description', description);
+        navigate(`/programs/edit`);
     }
 
+    
     const idDelete = async (id) => {
         const confirmDelete = window.confirm("Êtes-vous sûr de vouloir supprimer cet élément ?");
         if (!confirmDelete) {
@@ -56,13 +62,13 @@ const ProgramPage = () => {
                             <tr key={item.id}>
                                 {/* Nouvelle colonne pour l'image */}
                                  <td>
-                                    <img src={`https://loremflickr.com/g/350/140/${(item.title.replace(/ /g, ","))}`} alt="Image" />
+                                    <img src={`https://loremflickr.com/350/140/${(item.title.replace(/ /g, ","))}`} alt="Image" />
                                 </td>
                                 <td>{item.title}</td>
                                 <td>{item.description}</td>
                                 <td align='left'>{item.podcasts}</td>
                                 <td>
-                                    <Link to={`/edit`}>
+                                    <Link to={`/programs/edit`}>
                                         <Button
                                             onClick={(e) =>
                                                 setID(
