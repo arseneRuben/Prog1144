@@ -7,7 +7,7 @@ import axios from 'axios';
 import '../css/style.css'; 
  
 // Définition du composant PodCastPage
-const PodCastPage = () => {
+const PodCastPage = () => { 
   // Déclaration des états locaux avec useState
   const [podcasts, setPodcasts] = useState([]); // État pour stocker les podcasts
   const [showModal, setShowModal] = useState(false); // État pour gérer la visibilité du modal
@@ -16,8 +16,8 @@ const PodCastPage = () => {
     description: '',
     filename: '',
     langue: '',
-    id_program: '',
-    id_presentation: ''
+    id_podcast: '',
+    id_podcastwebapi: ''
   });
  
   // Utilisation de useEffect pour récupérer les podcasts lors du premier rendu du composant
@@ -29,7 +29,6 @@ const PodCastPage = () => {
   // Fonction pour récupérer les podcasts à partir de Listen Notes
   const fetchPodcasts = async () => {
     try {
-<<<<<<< HEAD
       const response = await fetch('http://localhost:8000/podcasts'); // Requête GET pour récupérer les podcasts
       if (response.ok) {
         const data = await response.json(); // Conversion de la réponse en JSON
@@ -38,19 +37,6 @@ const PodCastPage = () => {
       } else {
         console.error('Failed to fetch podcasts:', response.statusText); // Affichage d'une erreur en cas d'échec
       }
-=======
-      const response = await axios.get('https://listen-api.listennotes.com/api/v2/best_podcasts', {
-        headers: {
-          'X-ListenAPI-Key': '936ec5bd33444626814b68f4e93c00f7'
-        },
-        params: {
-          genre_id: 68, 
-          page: 1,
-          limit:12
-        }
-      });
-      setPodcasts(prevPodcasts => [...prevPodcasts, ...response.data.podcasts]);
->>>>>>> c327b2207557e1111a6085098a3e50f9b1ed4e35
     } catch (error) {
       console.error('Error fetching podcasts:', error);
     }
@@ -113,8 +99,8 @@ const PodCastPage = () => {
         description: '',
         filename: '',
         langue: '',
-        id_program: '',
-        id_presentation: ''
+        id_podcast: '',
+        id_podcastwebapi: ''
       });
       fetchLocalPodcasts();
     } catch (error) {
@@ -136,8 +122,8 @@ const PodCastPage = () => {
             <th>Description</th>
             <th>Filename</th>
             <th>Langue</th>
-            <th>Id Program</th>
-            <th>Id Presentation</th>
+            <th>Id Podcast</th>
+            <th>Id Podcastwebapi</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -148,8 +134,8 @@ const PodCastPage = () => {
               <td style={{ maxWidth: '200px', maxHeight: '50px', overflowY: 'auto' }}>{podcast.description}</td>
               <td>{podcast.filename}</td>
               <td>{podcast.langue}</td>
-              <td>{podcast.id_program}</td>
-              <td>{podcast.id_presentation}</td>
+              <td>{podcast.id_podcast}</td>
+              <td>{podcast.id_podcastwebapi}</td>
               <td>
                 <Button variant="danger" onClick={() => deletePodcast(podcast.id)}>Delete</Button>
               </td>
@@ -182,12 +168,12 @@ const PodCastPage = () => {
               <Form.Control type="text" placeholder="Enter langue" name="langue" value={formData.langue} onChange={handleInputChange} required />
             </Form.Group>
             <Form.Group controlId="formIdProgram">
-              <Form.Label>Id Program</Form.Label>
-              <Form.Control type="text" placeholder="Enter Id Program" name="id_program" value={formData.id_program} onChange={handleInputChange} required />
+              <Form.Label>Id Podcast</Form.Label>
+              <Form.Control type="text" placeholder="Enter Id Podcast" name="id_podcast" value={formData.id_podcast} onChange={handleInputChange} required />
             </Form.Group>
             <Form.Group controlId="formIdPresentation">
-              <Form.Label>Id Presentation</Form.Label>
-              <Form.Control type="text" placeholder="Enter Id Presentation" name="id_presentation" value={formData.id_presentation} onChange={handleInputChange} required />
+              <Form.Label>Id Podcastwebapi</Form.Label>
+              <Form.Control type="text" placeholder="Enter Id Podcastwebapi" name="id_podcastwebapi" value={formData.id_podcastwebapi} onChange={handleInputChange} required />
             </Form.Group>
             <Button variant="primary" type="submit">Submit</Button>
           </Form>
