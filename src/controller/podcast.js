@@ -6,7 +6,7 @@ import { CONTENT_TYPE_JSON, HTTP_OK } from '../dao/util.js';
 export const createPodcast = async (req, res) => {
     try {
         connect();
-        query('INSERT INTO podcasts (title, descriptions, filename, langue, id_program, id_presentation) VALUES (?, ?, ?, ?, ?, ?)', 
+        query('INSERT INTO podcasts (title, description, filename, langue, id_program, id_presentation) VALUES (?, ?, ?, ?, ?, ?)', 
             [req.body.title, req.body.description, req.body.filename, req.body.langue, req.body.id_program, req.body.id_presentation], function () {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON });
             res.end(JSON.stringify({ message: 'Podcast created', success: true }, null, 3));
@@ -52,7 +52,7 @@ export const getPodcast = async (req, res) => {
 export const updatePodcast = async (req, res) => {
     try {
         connect();
-        query('UPDATE podcasts SET title=?, descriptions=?, filename=?, langue=?, id_program=?, id_presentation=? WHERE id=?',
+        query('UPDATE podcasts SET title=?, description=?, filename=?, langue=?, id_program=?, id_presentation=? WHERE id=?',
             [req.body.title, req.body.description, req.body.filename, req.body.langue, req.body.id_program, req.body.id_presentation, req.params.id], function () {
             res.writeHead(HTTP_OK, { 'Content-Type': CONTENT_TYPE_JSON });
             res.end(JSON.stringify({ message: 'Podcast updated', success: true }, null, 3));
